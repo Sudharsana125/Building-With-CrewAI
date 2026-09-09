@@ -1,0 +1,9 @@
+Company Name: NovaTech AI
+
+NovaTech AI builds AI-powered automation solutions.
+
+Main Product: NovaFlow
+
+NovaFlow helps businesses automate repetitive workflows using AI agents.
+
+Founded: 2024

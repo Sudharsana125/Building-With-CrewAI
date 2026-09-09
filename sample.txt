@@ -1,0 +1,2 @@
+CrewAI is a framework for building AI agents.
+Agents can use tools to perform actions.

@@ -36,8 +36,9 @@ design_task = Task(
 
 development_task = Task(
     description="Develop a functional web page based on the design created by the designer.",
-    expected_output="A fully functional web page that matches the provided design layout.",
-    agent=developer
+    expected_output="A functional HTML and CSS web page that follows the provided design.",
+    agent=developer,
+    context=[design_task]
 )
 
 crew = Crew(

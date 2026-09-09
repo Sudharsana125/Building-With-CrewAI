@@ -4,29 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alex Morgan — Creative Designer & Developer</title>
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
-    <!-- FontAwesome for Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <style>
         :root {
             --bg-color: #0f1016;
-            --card-bg: #171923;
+            --card-bg: #181a24;
             --text-primary: #f3f4f6;
             --text-secondary: #9ca3af;
             --accent: #6366f1;
-            --accent-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
-            --border-color: rgba(255, 255, 255, 0.08);
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --accent-glow: rgba(99, 102, 241, 0.3);
+            --border: #2d3142;
+            --transition: all 0.3s ease;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            scroll-behavior: smooth;
         }
 
         body {
@@ -37,39 +33,30 @@
             overflow-x: hidden;
         }
 
-        /* Ambient background glow */
-        .ambient-glow {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 800px;
-            height: 400px;
-            background: linear-gradient(180deg, rgba(99, 102, 241, 0.15) 0%, rgba(168, 85, 247, 0) 100%);
-            filter: blur(80px);
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        /* Container */
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        /* Header / Navbar */
+        /* Header & Navigation */
         header {
-            padding: 2rem 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(15, 16, 22, 0.85);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 1.25rem 2rem;
         }
 
         .logo {
             font-weight: 700;
             font-size: 1.25rem;
-            letter-spacing: -0.5px;
             color: var(--text-primary);
             text-decoration: none;
             display: flex;
@@ -77,92 +64,97 @@
             gap: 0.5rem;
         }
 
-        .logo-dot {
-            width: 8px;
-            height: 8px;
-            background: var(--accent-gradient);
-            border-radius: 50%;
+        .logo span {
+            color: var(--accent);
         }
 
-        nav ul {
+        .nav-links {
             display: flex;
             gap: 2rem;
             list-style: none;
         }
 
-        nav a {
+        .nav-links a {
             color: var(--text-secondary);
             text-decoration: none;
-            font-size: 0.95rem;
             font-weight: 500;
             transition: var(--transition);
         }
 
-        nav a:hover {
-            color: var(--text-primary);
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--accent);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
         }
 
         /* Hero Section */
         .hero {
-            padding: 6rem 0 4rem;
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 4rem;
+            min-height: 100vh;
+            display: flex;
             align-items: center;
+            padding-top: 5rem;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 700px;
+            z-index: 2;
         }
 
         .badge {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            padding: 0.35rem 0.85rem;
-            background: rgba(99, 102, 241, 0.1);
-            border: 1px solid rgba(99, 102, 241, 0.2);
+            padding: 0.5rem 1rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
             border-radius: 50px;
-            font-size: 0.85rem;
-            color: #818cf8;
-            font-weight: 500;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
             margin-bottom: 1.5rem;
+        }
+
+        .badge i {
+            color: #10b981;
         }
 
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
             font-weight: 700;
             line-height: 1.1;
-            letter-spacing: -1.5px;
             margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
         }
 
         .hero h1 span {
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            font-weight: 600;
-            background: var(--accent-gradient);
+            background: linear-gradient(135deg, var(--text-primary), var(--accent));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .hero p {
+            font-size: 1.125rem;
             color: var(--text-secondary);
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-            max-width: 500px;
+            margin-bottom: 2.5rem;
+            max-width: 550px;
         }
 
-        .cta-group {
+        .hero-btns {
             display: flex;
             gap: 1rem;
-            align-items: center;
         }
 
         .btn {
             display: inline-flex;
             align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            padding: 0.8rem 1.75rem;
+            gap: 0.75rem;
+            padding: 0.875rem 1.75rem;
             border-radius: 8px;
-            font-size: 0.95rem;
             font-weight: 600;
             text-decoration: none;
             transition: var(--transition);
@@ -170,478 +162,391 @@
         }
 
         .btn-primary {
-            background: var(--accent-gradient);
+            background-color: var(--accent);
             color: white;
-            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
-            border: none;
+            box-shadow: 0 0 20px var(--accent-glow);
         }
 
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 25px rgba(99, 102, 241, 0.6);
+            background-color: #4f46e5;
         }
 
         .btn-outline {
-            background: transparent;
+            background-color: transparent;
             color: var(--text-primary);
-            border: 1px solid var(--border-color);
+            border: 1px solid var(--border);
         }
 
         .btn-outline:hover {
-            background: rgba(255, 255, 255, 0.03);
-            border-color: rgba(255, 255, 255, 0.2);
+            border-color: var(--accent);
+            background: rgba(99, 102, 241, 0.05);
         }
 
-        /* Hero Visual/Card */
-        .hero-visual {
-            position: relative;
-        }
-
-        .profile-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: 2rem;
-            text-align: center;
-            position: relative;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-        }
-
-        .avatar-container {
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 1.5rem;
-            border-radius: 50%;
-            padding: 3px;
-            background: var(--accent-gradient);
-        }
-
-        .avatar {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-            background: #2d3748; /* Fallback */
-        }
-
-        .profile-card h3 {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 0.25rem;
-        }
-
-        .profile-card p {
-            color: var(--text-secondary);
-            font-size: 0.85rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-        }
-
-        .social-links a {
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.05);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-primary);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .social-links a:hover {
-            background: var(--accent);
-            transform: translateY(-2px);
-        }
-
-        /* Section Styling */
+        /* Section Generic */
         section {
-            padding: 5rem 0;
-            border-top: 1px solid var(--border-color);
+            padding: 6rem 0;
+            border-top: 1px solid var(--border);
         }
 
         .section-header {
-            margin-bottom: 3rem;
+            margin-bottom: 3.5rem;
         }
 
-        .section-title {
-            font-size: 2rem;
+        .section-header h2 {
+            font-size: 2.25rem;
             font-weight: 700;
-            letter-spacing: -0.5px;
             margin-bottom: 0.5rem;
+            letter-spacing: -0.01em;
         }
 
-        .section-subtitle {
+        .section-header p {
             color: var(--text-secondary);
-            font-size: 1rem;
         }
 
         /* Projects Grid */
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
         }
 
         .project-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
             overflow: hidden;
             transition: var(--transition);
-            display: flex;
-            flex-direction: column;
         }
 
         .project-card:hover {
             transform: translateY(-5px);
-            border-color: rgba(99, 102, 241, 0.4);
+            border-color: var(--accent);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
 
-        .project-image {
+        .project-img {
             width: 100%;
             height: 220px;
-            background: #222534;
+            background: #252836;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            font-size: 3rem;
             position: relative;
             overflow: hidden;
         }
 
-        .project-image img {
+        .project-img img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: var(--transition);
         }
 
-        .project-card:hover .project-image img {
-            transform: scale(1.03);
+        .project-card:hover .project-img img {
+            transform: scale(1.05);
         }
 
-        .project-content {
-            padding: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
+        .project-info {
+            padding: 1.75rem;
         }
 
         .project-tags {
             display: flex;
             gap: 0.5rem;
-            margin-bottom: 0.75rem;
+            margin-bottom: 1rem;
             flex-wrap: wrap;
         }
 
         .tag {
             font-size: 0.75rem;
-            padding: 0.2rem 0.6rem;
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--text-secondary);
-            border-radius: 4px;
+            padding: 0.25rem 0.75rem;
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--accent);
+            border-radius: 50px;
             font-weight: 500;
         }
 
-        .project-content h3 {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
+        .project-info h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
         }
 
-        .project-content p {
+        .project-info p {
             color: var(--text-secondary);
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             margin-bottom: 1.5rem;
-            flex-grow: 1;
         }
 
         .project-link {
-            color: #818cf8;
+            color: var(--text-primary);
             text-decoration: none;
             font-weight: 600;
-            font-size: 0.9rem;
             display: inline-flex;
             align-items: center;
-            gap: 0.4rem;
+            gap: 0.5rem;
+            font-size: 0.9rem;
             transition: var(--transition);
         }
 
         .project-link:hover {
-            color: #a5b4fc;
-            gap: 0.6rem;
+            color: var(--accent);
+            gap: 0.75rem;
         }
 
-        /* Skills Section */
-        .skills-grid {
+        /* About & Skills */
+        .about-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 4rem;
+            align-items: center;
         }
 
-        .skill-card {
+        .about-text p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        .skills-container h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .skill-badge {
             background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 1.5rem;
-            text-align: center;
+            border: 1px solid var(--border);
+            padding: 0.6rem 1.25rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
             transition: var(--transition);
         }
 
-        .skill-card:hover {
-            border-color: rgba(99, 102, 241, 0.3);
-            background: #1a1c28;
-        }
-
-        .skill-card i {
-            font-size: 2rem;
-            background: var(--accent-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 1rem;
-        }
-
-        .skill-card h4 {
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 0.25rem;
-        }
-
-        .skill-card p {
-            font-size: 0.8rem;
-            color: var(--text-secondary);
+        .skill-badge:hover {
+            border-color: var(--accent);
+            color: var(--accent);
         }
 
         /* Contact Section */
         .contact-content {
             background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: 3rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 2rem;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 4rem;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
-        .contact-text h2 {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            letter-spacing: -0.5px;
+        .contact-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
         }
 
-        .contact-text p {
+        .contact-content p {
             color: var(--text-secondary);
-            font-size: 1rem;
+            margin-bottom: 2.5rem;
+            font-size: 1.1rem;
         }
 
         /* Footer */
         footer {
             padding: 3rem 0;
-            border-top: 1px solid var(--border-color);
+            border-top: 1px solid var(--border);
             text-align: center;
             color: var(--text-secondary);
-            font-size: 0.85rem;
+            font-size: 0.9rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links a {
+            color: var(--text-secondary);
+            font-size: 1.25rem;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            color: var(--accent);
         }
 
         /* Responsive Design */
-        @media (max-width: 900px) {
-            .hero {
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .about-grid {
                 grid-template-columns: 1fr;
-                text-align: center;
-                padding: 4rem 0 2rem;
-            }
-
-            .hero p {
-                margin: 0 auto 2rem;
-            }
-
-            .cta-group {
-                justify-content: center;
-            }
-
-            .hero-visual {
-                max-width: 350px;
-                margin: 0 auto;
-            }
-
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .skills-grid {
-                grid-template-columns: repeat(2, 1fr);
+                gap: 2.5rem;
             }
 
             .contact-content {
+                padding: 2rem 1rem;
+            }
+
+            .hero-btns {
                 flex-direction: column;
-                text-align: center;
-                padding: 2rem;
-            }
-        }
-
-        @media (max-width: 600px) {
-            nav ul {
-                display: none; /* Keep it clean for simple layout */
-            }
-
-            .hero h1 {
-                font-size: 2.75rem;
-            }
-
-            .skills-grid {
-                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
 
-    <div class="ambient-glow"></div>
+    <!-- Header -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo"><i class="fa-solid fa-code"></i> Alex<span>.</span>Morgan</a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </header>
 
-    <div class="container">
-        <!-- Header -->
-        <header>
-            <a href="#" class="logo">
-                <span class="logo-dot"></span> Alex Morgan
-            </a>
-            <nav>
-                <ul>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#skills">Skills</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-        </header>
-
-        <!-- Hero Section -->
-        <section class="hero" style="border-top: none; padding-top: 2rem;">
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
             <div class="hero-content">
                 <div class="badge">
-                    <i class="fa-solid fa-sparkles"></i> Available for freelance work
+                    <i class="fa-solid fa-circle"></i> Available for freelance work
                 </div>
-                <h1>Crafting digital experiences with <span>purpose & polish.</span></h1>
-                <p>I'm a UI/UX designer and frontend developer focused on building clean, user-centric applications and stunning web interfaces.</p>
-                <div class="cta-group">
+                <h1>Crafting digital experiences that <span>inspire & engage</span>.</h1>
+                <p>I'm a UI/UX designer and frontend developer focused on building clean, user-centric web applications with modern technologies.</p>
+                <div class="hero-btns">
                     <a href="#projects" class="btn btn-primary">View Work <i class="fa-solid fa-arrow-right"></i></a>
                     <a href="#contact" class="btn btn-outline">Let's Talk</a>
                 </div>
             </div>
-            <div class="hero-visual">
-                <div class="profile-card">
-                    <div class="avatar-container">
-                        <!-- Placeholder avatar utilizing Unsplash -->
-                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=400" alt="Alex Morgan" class="avatar">
-                    </div>
-                    <h3>Alex Morgan</h3>
-                    <p>Product Designer & Dev</p>
-                    <div class="social-links">
-                        <a href="#" aria-label="Github"><i class="fa-brands fa-github"></i></a>
-                        <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-                        <a href="#" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
-                        <a href="#" aria-label="Dribbble"><i class="fa-brands fa-dribbble"></i></a>
-                    </div>
-                </div>
-            </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Projects Section -->
-        <section id="projects">
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Selected Projects</h2>
-                <p class="section-subtitle">Here are some of my recent works.</p>
+                <h2>Featured Projects</h2>
+                <p>A selection of my recent design & development work.</p>
             </div>
-
             <div class="projects-grid">
                 <!-- Project 1 -->
                 <div class="project-card">
-                    <div class="project-image">
-                        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=600" alt="SaaS Dashboard Preview">
+                    <div class="project-img">
+                        <div style="background: linear-gradient(135deg, #3b82f6, #1d4ed8); width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.5rem;">SaaS Analytics UI</div>
                     </div>
-                    <div class="project-content">
+                    <div class="project-info">
                         <div class="project-tags">
                             <span class="tag">UI/UX</span>
                             <span class="tag">React</span>
                             <span class="tag">Tailwind</span>
                         </div>
-                        <h3>Nova Analytics Dashboard</h3>
-                        <p>A comprehensive data visualization platform designed for modern SaaS companies to track performance metrics effortlessly.</p>
-                        <a href="#" class="project-link">Explore Case Study <i class="fa-solid fa-arrow-right-long"></i></a>
+                        <h3>Pulse Metrics Dashboard</h3>
+                        <p>A comprehensive data visualization dashboard designed for SaaS businesses to track key performance indicators.</p>
+                        <a href="#" class="project-link">Explore Case Study <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </div>
-
                 <!-- Project 2 -->
                 <div class="project-card">
-                    <div class="project-image">
-                        <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&q=80&w=600" alt="E-Commerce App Preview">
+                    <div class="project-img">
+                        <div style="background: linear-gradient(135deg, #10b981, #047857); width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.5rem;">E-Commerce App</div>
                     </div>
-                    <div class="project-content">
+                    <div class="project-info">
                         <div class="project-tags">
-                            <span class="tag">Branding</span>
                             <span class="tag">Design System</span>
-                            <span class="tag">Mobile</span>
+                            <span class="tag">Next.js</span>
                         </div>
-                        <h3>Aura Minimal E-Commerce</h3>
-                        <p>An immersive shopping experience tailored for sustainable fashion brands, emphasizing micro-interactions and smooth flows.</p>
-                        <a href="#" class="project-link">Explore Case Study <i class="fa-solid fa-arrow-right-long"></i></a>
+                        <h3>Velvet & Stone Storefront</h3>
+                        <p>An immersive minimalist e-commerce platform built for a luxury sustainable fashion brand.</p>
+                        <a href="#" class="project-link">Explore Case Study <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <!-- Project 3 -->
+                <div class="project-card">
+                    <div class="project-img">
+                        <div style="background: linear-gradient(135deg, #f59e0b, #b45309); width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.5rem;">Productivity Tool</div>
+                    </div>
+                    <div class="project-info">
+                        <div class="project-tags">
+                            <span class="tag">UX Research</span>
+                            <span class="tag">Vue.js</span>
+                        </div>
+                        <h3>TaskFlow Workspace</h3>
+                        <p>A clean, distraction-free task management application tailored for remote creative teams.</p>
+                        <a href="#" class="project-link">Explore Case Study <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Skills Section -->
-        <section id="skills">
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
             <div class="section-header">
-                <h2 class="section-title">My Expertise</h2>
-                <p class="section-subtitle">Tools and technologies I use to bring ideas to life.</p>
+                <h2>About Me</h2>
+                <p>Background, philosophy, and technical stack.</p>
             </div>
-
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <i class="fa-solid fa-pen-nib"></i>
-                    <h4>UI/UX Design</h4>
-                    <p>Wireframing, Prototyping, Design Systems</p>
+            <div class="about-grid">
+                <div class="about-text">
+                    <p>Hello! I'm Alex, a designer and developer based in San Francisco. I enjoy bridging the gap between engineering and design—combining my technical toolkit with a keen eye for aesthetics to create seamless digital products.</p>
+                    <p>Over the past 5 years, I've partnered with fast-growing startups and established enterprises to define their brand identities, build design systems, and ship scalable web applications.</p>
                 </div>
-                <div class="skill-card">
-                    <i class="fa-solid fa-code"></i>
-                    <h4>Frontend Dev</h4>
-                    <p>HTML5, CSS3, JavaScript (ES6+)</p>
-                </div>
-                <div class="skill-card">
-                    <i class="fa-solid fa-layer-group"></i>
-                    <h4>Frameworks</h4>
-                    <p>React, Vue.js, Tailwind CSS</p>
-                </div>
-                <div class="skill-card">
-                    <i class="fa-solid fa-wand-magic-sparkles"></i>
-                    <h4>Tools</h4>
-                    <p>Figma, Git, VS Code, Webpack</p>
+                <div class="skills-container">
+                    <h3>Core Technologies & Skills</h3>
+                    <div class="skills-grid">
+                        <div class="skill-badge"><i class="fa-brands fa-figma text-accent"></i> UI/UX Design</div>
+                        <div class="skill-badge"><i class="fa-brands fa-html5"></i> HTML5 / CSS3</div>
+                        <div class="skill-badge"><i class="fa-brands fa-js"></i> JavaScript (ES6+)</div>
+                        <div class="skill-badge"><i class="fa-brands fa-react"></i> React / Next.js</div>
+                        <div class="skill-badge"><i class="fa-brands fa-css3-alt"></i> Tailwind CSS</div>
+                        <div class="skill-badge"><i class="fa-solid fa-pen-nib"></i> Design Systems</div>
+                    </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Contact Section -->
-        <section id="contact" style="padding-bottom: 6rem;">
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
             <div class="contact-content">
-                <div class="contact-text">
-                    <h2>Let's build something amazing together.</h2>
-                    <p>Have a project in mind or just want to say hi? My inbox is always open.</p>
-                </div>
-                <a href="mailto:hello@alexmorgan.design" class="btn btn-primary">Get In Touch <i class="fa-solid fa-paper-plane"></i></a>
+                <h2>Let's build something amazing together.</h2>
+                <p>Whether you have a project in mind or just want to chat, my inbox is always open.</p>
+                <a href="mailto:alex.morgan.design@example.com" class="btn btn-primary">Get In Touch <i class="fa-regular fa-paper-plane"></i></a>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Footer -->
-        <footer>
-            <p>&copy; 2026 Alex Morgan. All rights reserved.</p>
-        </footer>
-    </div>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="#"><i class="fa-brands fa-github"></i></a>
+                <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="#"><i class="fa-brands fa-dribbble"></i></a>
+            </div>
+            <p>&copy; 2026 Alex Morgan. Built with passion & clean code.</p>
+        </div>
+    </footer>
 
 </body>
 </html>
-```

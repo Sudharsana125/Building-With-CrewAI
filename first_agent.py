@@ -29,6 +29,4 @@ crew = Crew(
 )
 
 result = crew.kickoff()
-
-print("\n--- FINAL RESULT ---\n")
 print(result)

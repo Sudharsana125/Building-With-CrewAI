@@ -1,9 +1,6 @@
-import os
-from dotenv import load_dotenv
+
 from crewai import Agent, Task, Crew, Process, LLM
 
-
-load_dotenv()
 
 gemini_llm = LLM(
     model="gemini/gemini-3.5-flash-lite",
@@ -49,6 +46,4 @@ crew = Crew(
 
 result = crew.kickoff()
 
-
-print("\n--- FINAL RESULT ---")
 print(result)

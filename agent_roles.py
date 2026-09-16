@@ -17,5 +17,4 @@ crew = Crew(
     tasks=[],
     process=Process.sequential
 )
-
 print(crew)

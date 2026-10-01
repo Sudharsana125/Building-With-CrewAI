@@ -1,5 +1,7 @@
 Hellooo....here is Building With CrewAI 👩‍💻
 
 <p align="center">
-  <img src="https://devicons.io/icons/crewai/variants/crewai-icon.svg" width="200" alt="CrewAI">
+  <img src="https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/crewai/default.svg"
+       width="250"
+       alt="CrewAI">
 </p>
